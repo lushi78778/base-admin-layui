@@ -2,7 +2,6 @@ package hui.base.interceptor;
 
 import hui.base.entity.Menu;
 import hui.base.entity.User;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +27,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 		User user = (User) session.getAttribute("USER");
 		List<Menu> menus = user.getRole().get(0).getMenu();
 		for (Menu menu : menus) {
-			String path = menu.getPath();
+			String path = menu.getHref();
 			if (path.equalsIgnoreCase(current)) {
 				return true;
 			}

@@ -28,18 +28,18 @@ public class Menu implements Serializable {
 	/**
 	 * 菜单名称
 	 */
-	private String name;
+	private String title;
 	/**
 	 * 菜单路径
 	 */
-	private String path;
+	private String href;
 	/**
 	 * 菜单图标
 	 */
 	private String icon;
 
 	@Transient
-	private List<Menu> children = new ArrayList<>();
+	private List<Menu> child = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
@@ -57,20 +57,20 @@ public class Menu implements Serializable {
 		this.pid = pid;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String name) {
+		this.title = name;
 	}
 
-	public String getPath() {
-		return path;
+	public String getHref() {
+		return href;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setHref(String path) {
+		this.href = path;
 	}
 
 	public String getIcon() {
@@ -81,11 +81,11 @@ public class Menu implements Serializable {
 		this.icon = icon;
 	}
 
-	public List<Menu> getChildren() {
-		return children;
+	public List<Menu> getChild() {
+		return child;
 	}
 
-	public void setChildren(List<Menu> children) {
-		this.children = children;
+	public void setChild(List<Menu> child) {
+		this.child = child;
 	}
 }

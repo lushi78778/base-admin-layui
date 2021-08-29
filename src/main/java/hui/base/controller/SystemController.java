@@ -4,6 +4,7 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import hui.base.bean.Result;
 import hui.base.bean.RetCode;
+import hui.base.dao.MenuDao;
 import hui.base.dao.UserDao;
 import hui.base.entity.Menu;
 import hui.base.entity.User;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 系统控制器
@@ -30,6 +33,9 @@ public class SystemController {
 
 	@Resource
 	private UserDao userDao;
+
+	@Resource
+	private MenuDao menuDao;
 
 	/**
 	 * 用户登录接口
@@ -61,7 +67,7 @@ public class SystemController {
 		List<Menu> menus = user.getRole().get(0).getMenu();
 		session.setAttribute("USER", user);
 		session.setAttribute("menus", MenuUtil.toTree(menus, 0));
-		return new Result(RetCode.LOGIN_SUCCESS,"dashboard");
+		return new Result(RetCode.LOGIN_SUCCESS, "dashboard");
 	}
 
 	/**
@@ -94,5 +100,23 @@ public class SystemController {
 		//将验证码通过输出流返回到前端
 		OutputStream os = response.getOutputStream();
 		captcha.write(os);
+	}
+
+	@GetMapping("/init")
+	public Map<String, Object> init() {
+		Map<String, Object> result = new HashMap<>(3);
+		Map<String, Object> homeInfo = new HashMap<>(2);
+		homeInfo.put("title", "系统首页");
+		homeInfo.put("href", "dashboard");
+		Map<String, Object> logoInfo = new HashMap<>(3);
+		logoInfo.put("title", "BASE ADMIN");
+		logoInfo.put("image", "images/logo.png");
+		logoInfo.put("href", "");
+		List<Menu> menus = menuDao.findAll();
+		List<Menu> menuInfo = MenuUtil.toTree(menus, 0);
+		result.put("homeInfo", homeInfo);
+		result.put("logoInfo", logoInfo);
+		result.put("menuInfo", menuInfo);
+		return result;
 	}
 }

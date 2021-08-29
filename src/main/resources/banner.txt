@@ -1,5 +1,0 @@
-${AnsiColor.BRIGHT_GREEN}$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-${AnsiColor.BRIGHT_GREEN}$$                          佛祖保佑          永无BUG                       $$
-${AnsiColor.BRIGHT_MAGENTA}$$                           Spring Boot: ${spring-boot.formatted-version}                       $$
-${AnsiColor.BRIGHT_CYAN}$$                                Base Admin                              $$
-${AnsiColor.BRIGHT_YELLOW}$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

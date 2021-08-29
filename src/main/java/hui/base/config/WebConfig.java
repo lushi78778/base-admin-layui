@@ -26,11 +26,11 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new LoginInterceptor())
+		/*registry.addInterceptor(new LoginInterceptor())
 				.addPathPatterns("/**")
 				.excludePathPatterns(EXCLUDES);
 		registry.addInterceptor(new AuthInterceptor())
 				.addPathPatterns("/**")
-				.excludePathPatterns(EXCLUDES);
+				.excludePathPatterns(EXCLUDES);*/
 	}
 }

@@ -1,16 +1,7 @@
 package hui.base.controller;
 
-import hui.base.dao.MenuDao;
-import hui.base.dao.RoleDao;
-import hui.base.entity.Menu;
-import hui.base.entity.Role;
-import hui.base.util.MenuUtil;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * 页面控制器
@@ -21,11 +12,10 @@ import java.util.List;
 @Controller
 public class PageController {
 
-	@Resource
-	private RoleDao roleDao;
-
-	@Resource
-	private MenuDao menuDao;
+	@GetMapping("/index")
+	public String index() {
+		return "index";
+	}
 
 	/**
 	 * 登录页面
@@ -44,7 +34,7 @@ public class PageController {
 	 */
 	@GetMapping("/dashboard")
 	public String dashboard() {
-		return "admin/dashboard";
+		return "system/dashboard";
 	}
 
 	/**
@@ -53,10 +43,8 @@ public class PageController {
 	 * @return 页面
 	 */
 	@GetMapping("/menu")
-	public String menu(Model model) {
-		List<Menu> menus = menuDao.findAll();
-		model.addAttribute("menus", MenuUtil.toTree(menus, 0));
-		return "admin/menu";
+	public String menu() {
+		return "menu/list";
 	}
 
 	/**
@@ -66,7 +54,7 @@ public class PageController {
 	 */
 	@GetMapping("/role")
 	public String role() {
-		return "admin/role";
+		return "role/list";
 	}
 
 	/**
@@ -75,10 +63,38 @@ public class PageController {
 	 * @return 页面
 	 */
 	@GetMapping("/user")
-	public String user(Model model) {
-		List<Role> roles = roleDao.findAll();
-		model.addAttribute("roles", roles);
-		return "admin/user";
+	public String user() {
+		return "user/list";
+	}
+
+	/**
+	 * 系统设置页面
+	 *
+	 * @return 页面
+	 */
+	@GetMapping("/setting")
+	public String setting() {
+		return "system/setting";
+	}
+
+	/**
+	 * 用户个人信息页面
+	 *
+	 * @return 页面
+	 */
+	@GetMapping("/profile")
+	public String profile() {
+		return "system/profile";
+	}
+
+	/**
+	 * 用户修改密码页面
+	 *
+	 * @return 页面
+	 */
+	@GetMapping("/password")
+	public String password() {
+		return "system/password";
 	}
 
 	/**
@@ -90,7 +106,6 @@ public class PageController {
 	public String e404() {
 		return "error/404";
 	}
-
 
 	/**
 	 * 403错误页面

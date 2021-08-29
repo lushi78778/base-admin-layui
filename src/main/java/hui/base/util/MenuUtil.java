@@ -40,7 +40,7 @@ public class MenuUtil {
 	public static Menu findChildren(List<Menu> menus, Menu parent) {
 		for (Menu child : menus) {
 			if (child.getPid().equals(parent.getId())) {
-				parent.getChildren().add(findChildren(menus, child));
+				parent.getChild().add(findChildren(menus, child));
 			}
 		}
 		return parent;
